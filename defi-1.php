@@ -38,20 +38,43 @@
         </div>
         <div id="resultat" class="row">
             <div class="col-6">
-            <form>
-                <div class="form-group">
-                    <input type="text" placeholder="Saisissez votre nom" class="form-control"></input><br />
-                    <input type="text" placeholder="Saisissez votre prenom"
-                        class="form-control"></input><br />
-                    <input type="number" placeholder="Saisissez votre age"
-                        class="form-control"></input><br />
-                    <button class="btn btn-primary">Soumettre</button>
-                </div>
-            </form>
+                <form method="get">
+                    <div class="form-group">
+                        <input type="text" placeholder="Saisissez votre nom" name="nom"
+                            class="form-control"></input><br />
+                        <input type="text" placeholder="Saisissez votre prenom" name="prenom"
+                            class="form-control"></input><br />
+                        <input type="number" placeholder="Saisissez votre age" name="age"
+                            class="form-control"></input><br />
+                        <button class="btn btn-primary">Soumettre</button>
+                    </div>
+                </form>
             </div>
             <div class="col-6">
 
-       
+                <!-- SOLUTION SANS VERIFICATION -->
+                <!-- <div class="alert alert-success alert-dismissible">
+                    Vous vous appelez <?php echo $_GET [ 'prenom' ] ; ?> <?php echo $_GET [ 'nom' ] ; ?> et vous avez <?php echo $_GET [ 'age' ] ; ?> ans
+                </div> -->
+
+                <!-- SOLUTION AVEC VERIFICATION -->
+
+                <?php
+
+
+                if(isset($_GET [ 'prenom' ]) && !empty($_GET [ 'prenom' ]) && isset($_GET [ 'nom' ]) && !empty($_GET [ 'nom' ]) && isset($_GET [ 'age' ]) && !empty($_GET [ 'age' ])){
+
+
+                    echo '<div class="alert alert-success alert-dismissible">
+                    Vous vous appelez '.$_GET [ 'prenom' ].' '.$_GET [ 'nom' ].' et vous avez '.$_GET [ 'age' ].' ans
+                </div>';
+
+                }
+              
+
+                ?>
+
+
             </div>
         </div>
 
