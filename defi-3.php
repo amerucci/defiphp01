@@ -35,20 +35,64 @@
             <div class="col-6">
                 <form method="GET">
                     <div class="form-group">
-                        <input type="number" placeholder="Saisissez la première valeur"
+                        <input type="number" placeholder="Saisissez la première valeur" name="valeur01"
                             class="form-control"></input><br />
-                        <input type="number" placeholder="Saisissez la seconde valeur"
+                        <input type="number" placeholder="Saisissez la seconde valeur" name="valeur02"
                             class="form-control"></input><br />
                         <label class="form-check-label" for="exampleCheck1">Choisissez un opérateur</label><br />
-                        <button class="btn btn-primary">Addition</button>
-                        <button class="btn btn-primary">Soustraction</button>
-                        <button class="btn btn-primary">Multiplication</button>
-                        <button class="btn btn-primary">Division</button>
+                        <button name="operation" value="add" class="btn btn-primary">Addition</button>
+                        <button name="operation" value="substract" class="btn btn-primary">Soustraction</button>
+                        <button name="operation" value="multiplie" class="btn btn-primary">Multiplication</button>
+                        <button name="operation" value="divise" class="btn btn-primary">Division</button>
                     </div>
                 </form>
             </div>
             <div class="col-6">
+              <?php
+
+              /* SOLUTION 01 */
+        /* On vérifie qu'il y a bien des variables et qu'elles sont bien remplies dans l'URL */
+        if (isset($_GET["valeur01"]) && isset($_GET["valeur02"]) && isset($_GET["operation"]) && !empty($_GET["valeur01"]) && !empty($_GET["valeur02"]) && !empty($_GET["operation"])) {
+
           
+        /* On récupère l'opérateur passé dans l'URL et en fonction de sa valeur on effectue le calcul */
+            if($_GET["operation"]=="add"){
+                echo ($_GET['valeur01'] + $_GET['valeur02'] );
+            }
+            elseif ($_GET["operation"]=="substract"){
+                echo ($_GET['valeur01'] - $_GET['valeur02'] );
+            }
+            elseif ($_GET["operation"]=="multiplie"){
+                echo ($_GET['valeur01'] * $_GET['valeur02'] );
+            }
+            elseif ($_GET["operation"]=="divise") {
+                echo ($_GET['valeur01'] / $_GET['valeur02'] );
+              
+            }
+        }
+
+         /* SOLUTION 02 */
+          /* On vérifie qu'il y a bien des variables et qu'elles sont bien remplies dans l'URL */
+        if (isset($_GET["valeur01"]) && isset($_GET["valeur02"]) && isset($_GET["operation"]) && !empty($_GET["valeur01"]) && !empty($_GET["valeur02"]) && !empty($_GET["operation"])) {
+        /* Utilisation de switch, dans lequel on définit la codition de l'opération en fonction des cas rencontrés */
+         switch ($_GET["operation"]) {
+            case "add":
+                echo ($_GET['valeur01'] + $_GET['valeur02'] );
+                break;
+            case "substract":
+                echo ($_GET['valeur01'] - $_GET['valeur02'] );
+                break;
+            case "multiplie":
+                echo ($_GET['valeur01'] * $_GET['valeur02'] );
+                break;
+            case "divise":
+                echo ($_GET['valeur01'] / $_GET['valeur02'] );
+       
+                break;
+        }
+    }
+
+                ?>
             </div>
         </div>
     </div>
