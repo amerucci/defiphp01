@@ -31,7 +31,38 @@
             </p>
         </div>
         <div id="resultat">
-            
+            <form method="GET">
+                <select name="table">
+
+
+                    <?php
+                if (isset($_GET["table"]) && !is_null($_GET["table"])) {
+                    echo "<option value='" . $_GET["table"] . "'>" . $_GET["table"] . "</option>";
+                }
+
+
+                    for ($latable = 1; $latable <= 10; $latable++) {
+                        echo "<option value='" . $latable . "'>" . $latable . "</option>";
+                    }
+                    ?>
+
+
+                </select>
+                <button>afficher la table de multiplication</button>
+            </form>
+
+            <?php
+            if (isset($_GET["table"]) && !is_null($_GET["table"])) {
+                $table = $_GET["table"];
+
+                for ($i = 1; $i <= 10; $i++) {
+                    echo $table . "x" . $i . "=" . ($i * $table) . "<br/>";
+                }
+            }
+
+
+
+            ?>
         </div>
 
     </div>
