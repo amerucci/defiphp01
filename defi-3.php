@@ -52,9 +52,18 @@
 
               /* SOLUTION 01 */
         /* On vérifie qu'il y a bien des variables et qu'elles sont bien remplies dans l'URL */
-        if (isset($_GET["valeur01"]) && isset($_GET["valeur02"]) && isset($_GET["operation"]) && !empty($_GET["valeur01"]) && !empty($_GET["valeur02"]) && !empty($_GET["operation"])) {
+      
 
-          
+        if (isset($_GET["valeur01"]) && isset($_GET["valeur02"]) && isset($_GET["operation"]) && !empty($_GET["valeur01"]) && !is_null($_GET["valeur02"]) && !empty($_GET["operation"])) {
+
+            if(!is_null($_GET["valeur02"])){
+                echo $_GET["valeur02"];
+            }
+            else{
+                echo $_GET["valeur02"] = 0;
+            }
+
+
         /* On récupère l'opérateur passé dans l'URL et en fonction de sa valeur on effectue le calcul */
             if($_GET["operation"]=="add"){
                 echo ($_GET['valeur01'] + $_GET['valeur02'] );
@@ -66,10 +75,15 @@
                 echo ($_GET['valeur01'] * $_GET['valeur02'] );
             }
             elseif ($_GET["operation"]=="divise") {
+                if($_GET['valeur02']=="0"){
+                    echo "tu peux pas diviser par 0";
+                }
+                else{
                 echo ($_GET['valeur01'] / $_GET['valeur02'] );
-              
+            }
             }
         }
+       
 
          /* SOLUTION 02 */
           /* On vérifie qu'il y a bien des variables et qu'elles sont bien remplies dans l'URL */
