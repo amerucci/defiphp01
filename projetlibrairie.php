@@ -127,7 +127,7 @@
 
     <?php 
     if(isset($_GET['action']) && $_GET['action']=="modifier2"  && !empty($_GET['id'])  && !empty($_GET['titredulivre'])  && !empty($_GET['auteurdulivre'])){
-        $message = '';
+       
         $modifierv2 = $db->prepare('UPDATE livres SET Titre_Livres = :titredulivre, nom_Livres = :auteurdulivre WHERE ID_livre_Livres =:id');
         $modifierv2->bindParam(':id', $_GET['id'], PDO::PARAM_STR);
         $modifierv2->bindParam(':auteurdulivre', $_GET['auteurdulivre'], PDO::PARAM_STR);
@@ -150,6 +150,31 @@
 
         
     ?>
+
+<p>Boucle pré-rempli</p>
+<?php 
+ $recuperation = $db->query('SELECT * FROM Livres');
+ while ($livre = $recuperation->fetch()) {
+    echo "<form><div> <input type='text' name='id' value='".$livre['ID_livre_Livres']."'>
+    <input type='text' name='titredulivre' value='".$livre['Titre_Livres']."'>
+    <input type='text' name='annee' value='".$livre['annees_Livres']."'>
+    <input type='text' name='auteurdulivre' value='".$livre['nom_Livres']."'>
+    
+    <button type='submit' value='modifier2' name='action'>Modifier</button>
+    <button type='submit' value='supprimer' name='action'>Supprimer</button>
+    
+    </form>
+    
+    </div>";
+    
+    
+  
+ }
+
+
+
+?>
+
 
 
 
